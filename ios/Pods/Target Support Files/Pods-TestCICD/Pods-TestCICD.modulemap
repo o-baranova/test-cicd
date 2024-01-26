@@ -1,0 +1,6 @@
+module Pods_TestCICD {
+  umbrella header "Pods-TestCICD-umbrella.h"
+
+  export *
+  module * { export * }
+}

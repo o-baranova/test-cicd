@@ -1,0 +1,16 @@
+current directory: /Users/ksyushabaranova/Desktop/Project/TestCICD/vendor/bundle/ruby/3.1.0/gems/json-2.7.1/ext/json
+/opt/homebrew/opt/ruby@3.1/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/ksyushabaranova/Desktop/Project/TestCICD/vendor/bundle/ruby/3.1.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240122-20344-ocpzup sitelibdir\=./.gem.20240122-20344-ocpzup clean
+
+current directory: /Users/ksyushabaranova/Desktop/Project/TestCICD/vendor/bundle/ruby/3.1.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240122-20344-ocpzup sitelibdir\=./.gem.20240122-20344-ocpzup
+make: Nothing to be done for `all'.
+
+current directory: /Users/ksyushabaranova/Desktop/Project/TestCICD/vendor/bundle/ruby/3.1.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240122-20344-ocpzup sitelibdir\=./.gem.20240122-20344-ocpzup install
+
+current directory: /Users/ksyushabaranova/Desktop/Project/TestCICD/vendor/bundle/ruby/3.1.0/gems/json-2.7.1/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20240122-20344-ocpzup sitelibdir\=./.gem.20240122-20344-ocpzup clean
