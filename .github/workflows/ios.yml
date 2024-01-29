@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: 
       - main
-
+  
 jobs:
   build:
     runs-on: macos-latest
@@ -19,13 +19,15 @@ jobs:
           cd ios && pod install
       - name: Build iOS
         uses: maierj/fastlane-action@v2.2.1
-        TEAM_ID: ${{ secrets.TEAM_ID }}
+        env:
+          TEAM_ID: ${{ secrets.TEAM_ID }}
         lane: make_build
         subdirectory: 'ios'
         options: '{ "type": "distribution" }'
       - name: Deploy iOS
         uses: maierj/fastlane-action@v2.2.1
-        TEAM_ID: ${{ secrets.TEAM_ID }}
+        env:
+          TEAM_ID: ${{ secrets.TEAM_ID }}
         lane: deploy_testflight
         subdirectory: 'ios'
         options: '{ "type": "distribution" }'
