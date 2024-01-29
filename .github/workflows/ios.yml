@@ -7,29 +7,29 @@ on:
   pull_request:
     branches: 
       - main
-  workflow_dispatch:
-    jobs:
-      build:
-        runs-on: macos-latest
-        steps:
-          - uses: actions/checkout@v3
-          - name: Install dependencies
-            run: |
-              yarn
-              cd ios && pod install
-          - name: Build iOS
-            uses: maierj/fastlane-action@v2.2.1
-            env:
-            TEAM_ID: ${{ secrets.TEAM_ID }}
-            with:
-            lane: make_build
-            subdirectory: 'ios'
-            options: '{ "type": "distribution" }'
-          - name: Deploy iOS
-            uses: maierj/fastlane-action@v2.2.1
-            env:
-            TEAM_ID: ${{ secrets.TEAM_ID }}
-            with:
-            lane: deploy_testflight
-            subdirectory: 'ios'
-            options: '{ "type": "distribution" }'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          yarn
+          cd ios && pod install
+      - name: Build iOS
+        uses: maierj/fastlane-action@v2.2.1
+        env:
+        TEAM_ID: ${{ secrets.TEAM_ID }}
+        with:
+        lane: make_build
+        subdirectory: 'ios'
+        options: '{ "type": "distribution" }'
+      - name: Deploy iOS
+        uses: maierj/fastlane-action@v2.2.1
+        env:
+        TEAM_ID: ${{ secrets.TEAM_ID }}
+        with:
+        lane: deploy_testflight
+        subdirectory: 'ios'
+        options: '{ "type": "distribution" }'
