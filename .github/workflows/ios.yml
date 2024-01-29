@@ -1,0 +1,34 @@
+name: CI
+
+on:
+push:
+branches:
+
+- "develop" 
+
+jobs:
+buildIOS:
+runs-on: macos-latest
+steps:
+- uses: actions/checkout@v3
+
+- name: Pod update
+run: |
+cd ios
+
+pod update
+
+fastlane install_pods
+
+
+- name: Build iOS
+
+run: |
+fastlane make_build type:develop
+
+
+
+- name: Deploy iOS to Firebase
+
+run: |
+fastlane deploy_to_firebase type:develop

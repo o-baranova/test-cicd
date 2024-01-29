@@ -1,0 +1,43 @@
+{
+  "targets": [
+    "TestCICD",
+    "TestCICDTests"
+  ],
+  "schemes": [
+    "TestCICD"
+  ],
+  "configurations": [
+    {
+      "target": "TestCICD",
+      "config": "Debug",
+      "appPlist": "TestCICD/Info.plist",
+      "bundleId": "com.nixsolutions.testcicd",
+      "xcodeproj": "TestCICD.xcodeproj",
+      "workspace": "TestCICD"
+    },
+    {
+      "target": "TestCICD",
+      "config": "Release",
+      "appPlist": "TestCICD/Info.plist",
+      "bundleId": "com.nixsolutions.testcicd",
+      "xcodeproj": "TestCICD.xcodeproj",
+      "workspace": "TestCICD"
+    },
+    {
+      "target": "TestCICDTests",
+      "config": "Debug",
+      "appPlist": "TestCICDTests/Info.plist",
+      "bundleId": "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)",
+      "xcodeproj": "TestCICD.xcodeproj",
+      "workspace": "TestCICD"
+    },
+    {
+      "target": "TestCICDTests",
+      "config": "Release",
+      "appPlist": "TestCICDTests/Info.plist",
+      "bundleId": "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)",
+      "xcodeproj": "TestCICD.xcodeproj",
+      "workspace": "TestCICD"
+    }
+  ]
+}
