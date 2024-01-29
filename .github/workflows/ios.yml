@@ -21,11 +21,5 @@ jobs:
         uses: maierj/fastlane-action@v2.2.1
         env:
           TEAM_ID: ${{ secrets.TEAM_ID }}
+        lane: make_build
         subdirectory: 'ios'
-        options: '{ "type": "distribution" }'
-      - name: Deploy iOS
-        uses: maierj/fastlane-action@v2.2.1
-        env:
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-        subdirectory: 'ios'
-        options: '{ "type": "distribution" }'
