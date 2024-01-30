@@ -1,25 +1,45 @@
-name: CI
+name: CI IOS
 
 on:
   push:
-    branches: 
-      - main
-  pull_request:
-    branches: 
-      - main
-  
+    branches:
+      - "main"
+
+env:
+  MATCH_KEYCHAIN_NAME: ${{ secrets.MATCH_KEYCHAIN_NAME }}
+  MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
+  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+  TEAM_ID: ${{ secrets.TEAM_ID }}
+  TEAM_NAME: ${{ secrets.TEAM_NAME }}
+  FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+  FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+  DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+  DEPLOY_USER_NAME: ${{ secrets.DEPLOY_USER_NAME }}
+  DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+  APP_APPLE_ID: ${{ secrets.APP_APPLE_ID }}
+  OUTPUT_DIRECTORY: ${{ secrets.OUTPUT_DIRECTORY }}
+  SLACK_URL: ${{ secrets.SLACK_URL }}
+  SLACK_ACCESS_TOKEN: ${{ secrets.SLACK_ACCESS_TOKEN }}
+
 jobs:
-  build:
+  buildIOS:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install dependencies
+
+      - name: NPM install
         run: |
-          yarn
-          cd ios && pod install
+          rm -rf node_modules
+          npm i --legacy-peer-deps
+
       - name: Build iOS
-        uses: maierj/fastlane-action@v2.2.1
-        env:
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-        lane: make_build
-        subdirectory: 'ios'
+        run: |
+          cd ios
+          rm -rf build
+          fastlane clean_project_build type:develop
+          pod install
+          fastlane make_build type:develop
+
+      - name: Deploy iOS to Firebase
+        run: |
+          fastlane deploy_to_firebase type:develop
